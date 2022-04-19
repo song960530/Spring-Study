@@ -94,6 +94,7 @@
 
 ## 스프링 빈 전체 조회 하기
 ```java
+// AppConfig는 @Configuration 어노테이션이 선언되어 있구 내부에 @Bean어노테이션들이 붙은 메서드가 있는 상태임 (소스 넣기 귀찮아서 설명 추가)
 AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
 .
 .
@@ -111,6 +112,18 @@ void findApplicationBean() {
     }
   }
 }
+```
+
+
+## 스프링 빈 개별적으로 조회하기
+- getBean(빈이름,타입)
+- getBean(타입)
+- 조회 대상이 없을 경우 
+  - NoSuchBeanDefinitionException: No bean named 'xxxx' available
+```java
+ac.getBean("memberService",MemberServiceImpl.class); // 안좋은 케이스. 구체화에 의존하면 안된다
+ac.getBean("memberService",MemberService.class);
+ac.getBean(MemberService.class);
 ```
 
 
