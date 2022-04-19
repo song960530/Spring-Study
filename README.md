@@ -81,6 +81,46 @@
 
 
 
+## 스프링 컨테이너
+- BeanFactory, ApplicationContext를 구분해서 이야기한다. 일반적으로 ApplicationContext를 스프링 컨테이너라 한다.
+
+## 스프링 빈 등록시 주의 사항
+- 빈 이름은 메서드 이름을 사용한다
+- 빈 이름을 직접 부여할 수 있다
+  - @Bean(name="{beanName}")
+- **🔥빈 이름은 항상 다른 이름을 부여해야 한다.** 같은 이름을 부여하면 다른 빈이 무시되거나 덮어쓰여저 버린다
+
+
+
+## 스프링 빈 전체 조회 하기
+```java
+AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+.
+.
+.
+void findApplicationBean() {
+  String[] beans = ac.getBeanDefinitionNames();
+  for (String bean : beans) {
+    BeanDefinition beanDefinition = ac.getBeanDefinition(bean);
+    
+    // Role ROLE_APPLICATION : 직접 등록한 애플리케이션 빈
+    // Role Role_INFRASTRUCTURE : 스프링이 내부에서 사용하는 빈
+    if (beanDefinition.getRole() == BeanDefinition.ROLE_APPLICATION) {
+      Object object = ac.getBean(bean);
+      // bean과 object를 출력하면 이름과 빈으로 등록된 구현부 객체가 출력된다
+    }
+  }
+}
+```
+
+
+
+
+
+
+
+
+
 
 
 
