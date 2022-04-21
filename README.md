@@ -193,6 +193,8 @@ public static SingletonService getInstance(){return instance;}
   - 안티패턴으로 불리기도 한다
 - ✨위와같은 수많은 단점을 갖고있지만 스프링 컨테이너가 이런 단점들을 다 해결해준다
 
+
+
 ## 싱글톤 컨테이너🧐
 ![싱글톤 컨테이너](https://user-images.githubusercontent.com/52727315/164393275-63ceefa3-39a7-40a2-b100-7e8f121e099b.png)
 - 스프링 컨테이너는 싱글톤 컨테이너 역할을 한다
@@ -202,6 +204,8 @@ public static SingletonService getInstance(){return instance;}
 - 요청이 올 때 마다 객체를 생성하는것이 아닌 만들어진 객체를 공유하여 효율적으로 재사용한다
 - ps. 스프링의 기본 빈 등록방식은 싱글톤이나, 다른 방식도 제공한다
 
+
+
 ## 싱글톤 방식의 주의사항
 - 🔥객체 인스턴스를 하나만 생성해서 공유하는 방식은 여러 클라이언트가 하나의 객체 인스턴스를 공유하기 때문에 상태를 **유지(stateful)** 하게 설계하면 안된다
 - 🔥무상태(stateless)로 설계해야한다
@@ -209,6 +213,54 @@ public static SingletonService getInstance(){return instance;}
   - 클라이언트 변경할 수 있는 필드가 있으면 안된다
   - 읽기만 가능해야 하며 필드 대신 공유되지 않는 지역변수, 파라미터, ThreadLocal 등을 사용해야 한다
 - 공유되어 사용하는 필드가 있을 경우 큰 장애로 이어진다
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+## @Configuration과 바이트코드 조작의 마법🧐
+```java
+@Configuration
+class AppConfig {
+  .
+  .
+  .
+  
+  @Bean
+  public MemberService memberService() {
+    return new MemberSeviceImpl(memberRepository());
+  }
+  
+  @Bean
+  public MemberRepository memberRepository() {
+    return new MemberRepository();
+  }
+}
+```
+- 위코드만 봤을 때 아래 코드의 repo1과 repo2를 찍어볼경우 당연히 서로 다른 객체가 조회되어야한다
+```java
+MemberServiceImpl memberService = ac.getBean("memberService",MemberServiceImpl.class);
+
+MemberRepository repo1 = memberService.getMemberRepository();
+MemberRepository repo2 = ac.getBean("memberRepository",MemberRepository.class);
+```
+- 근데 막상 찍어보면 동일한 객체가 조회된다. 왜일까?
+  - ✨스프링이 CGLIB라는 바이트코드 조작 라이브러리를 사용하여 AppConfig 클래스를 상속받아 임의의 다른 클래스를 만들고, 그 다른 클래스를 빈으로 등록한것이다
+
+![CGLIB](https://user-images.githubusercontent.com/52727315/164414430-16055725-9c08-4cd7-b780-aa0eb2a1bb6a.png)
+- 위 사진처럼 @Configuration이 붙은 클래스는 CGLIB가 바이트 코드를 조작하여 임의의 다른 클래스파일로 등록한다.  
+이 과정에서 아래와 같이 내부 코드도 변경될 것 이다
+
+![CBLIB 예상 코드](https://user-images.githubusercontent.com/52727315/164414769-f90178f2-ee32-4f03-af67-a037da479df5.png)
+- 이런 식으로 @Bean이 붙은 메서드마다 존재하면 존재하는 빈을 반환하고 없으면 생성후 등록하여 반환하는 코드가 동적으로 만들어진다
+- 이러한 과정 적분에 싱글톤이 보장되는 것 이다
+
+
+
+
+## 만약 @Configuration 없이 @Bean을 사용하면 어떻게 될까?🤔
+- @Bean만 사용해도 스프링 빈으로 등록은 되지만 싱글톤을 보장하지 않는다.
+- 실제로 만들어진 스프링 빈을 getClass()로 찍어보면 CGLIB로 만들어진 객체가 아닌 실제 객체가 찍히게 된다
+
+### ✨스프링 빈을 등록할 땐 크게 고민할 것 없이 항상 @Configuration 어노테이션을 사용하도록 하자
 ------------------------------------------------------------------------------------------------------------------------------------
 
 
