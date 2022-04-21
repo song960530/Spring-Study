@@ -127,8 +127,17 @@ ac.getBean(MemberService.class);
 ```
 
 
+## 스프링 빈 특정 타입을 모두 조회하기
+```java
+Map<String, MemberRepository> beansOfType = ac.getBeansOfType(MemberRepository.class); // MemberRepository타입의 빈이 Map에 모두 담긴다
+```
 
 
+## 스프링 빈 관련 오류
+- 조회 대상이 없을 경우 
+  - NoSuchBeanDefinitionException: No bean named 'xxxx' available...
+- 조회 대상이 2개 이상일 경우
+  - NoUniqueBeanDefinitionException: No qualifying bean of type 'xxxxxx' avaliable...
 
 
 
