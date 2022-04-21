@@ -140,9 +140,15 @@ Map<String, MemberRepository> beansOfType = ac.getBeansOfType(MemberRepository.c
   - NoUniqueBeanDefinitionException: No qualifying bean of type 'xxxxxx' avaliable...
 
 
-
-
-
+## BeanFactory와 ApplicationContext🧐
+![applicationContext상속](https://user-images.githubusercontent.com/52727315/164372282-cdc4182d-ea75-412e-8d00-3f23f6a04216.png)
+- BeanFactory
+  - 스프링 컨테이너의 최상위 인터페이스. 빈을 관리하고 조회하는 역할을 담당한다
+  - BeanFactory를 직접 사용할 일은 거의 없으며, 부가그닝이 포함된 ApplicationContext를 사용한다
+- ApplicationContext
+  - BeanFactory를 상속받아 제공한다
+  - 빈의 조회 관리 뿐만아니라 수 많은 부가 기능을 제공한다
+- BeanFactory나 ApplicationContext를 스프링 컨테이너라 지칭한다
 
 
 
