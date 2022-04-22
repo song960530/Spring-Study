@@ -312,7 +312,14 @@ MemberRepository repo2 = ac.getBean("memberRepository",MemberRepository.class);
 
 
 
-
+## 스프링 빈 등록 시 충돌
+- 자동 빈 등록 vs 자동 빈 등록 (컴포넌트 스캔에 의해 자동으로 스프링 빈이 중복 등록되는 경우)
+  - ConflictingBeanDefinitionException 발생
+- 수동 빈 등록 vs 자동 빈 등록
+  - 수동 빈 등록이 우선권을 갖는다 (오버라이딩 해버림)
+  - ```Overriding bean definition for bean 'memoryMemberRepository' with a different definition: replacin``` 로그가 남으면서 오버라이딩
+- 만약 이렇게 오버라이딩 되면 이후에 찾을 수 없는 버그가 생겨버린다  
+이러한 상황때문에 스프링 부트에서는 충돌이 나면 오류가 발생하도록 기본값을 바꾸었다
 
 
 
