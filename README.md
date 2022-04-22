@@ -264,6 +264,40 @@ MemberRepository repo2 = ac.getBean("memberRepository",MemberRepository.class);
 ------------------------------------------------------------------------------------------------------------------------------------
 
 
+## @ComponentScan🧐
+
+![componentScan](https://user-images.githubusercontent.com/52727315/164644656-fa2f9928-d512-49aa-aed5-06912ede8b5f.png)
+- @Component가 붙은 모든 클래스를 스프링 빈으로 등록한다
+  - 기본 전략 : 스프링 빈의 이름은 클래스명의 앞글자를 소문자로 바꿔 사용한다
+  - 직접 지정 : @Component("빈이름") 이렇게 사용하면 직접 빈 이름을 지정해줄 수 있다
+
+```java
+@ComponentScan(
+  /**
+   * 탐색할 패키지의 시작 위치를 지정. 해당 패키지 포함 하위 패키지를 모두 탐색
+   * 지정하지 않으면 해당 클래스의 위치가 시작위치
+   */
+  basePackage = "hello.core" 
+)
+```
+- @SpringBootApplication 안에 @ComponentScan 어노테이션이 존재한다
+  - 때문에 @ComponentScan을 사용할 경우에는 최상위 패키지의 위치에 두는것이 관례이다 (스프링부트에서도 이 방법을 기본으로 제공한다)
+
+
+
+
+## @ComponentScan 대상🧐
+- @Component : 컴포넌트 스캔에서 사용
+- @Controller : 스프링MVC 컨트롤러에서 사용
+  - 스프링 MVC 컨트롤러로 인식
+- @Service : 스프링 비즈니스 로직에서 사용
+  - 특별한 부가기능은 없고, 핵심 비즈니스 로직이 있다는 인식을 할 수 있게 도와줌
+- @Repository : 스프링 데이터 접근 계층에서 사용
+  - 스프링 데이터 접근 계층으로 인식하여 데이터계층의 예외를 스프링 예외로 변환해준다👍
+    - 만약 DB가 바뀌었을 경우 내뱉는 에러가 바뀌게 되어 서비스단에서도 변경처리를 해줘야 하는데 이러한 예외를 공통 예외로 변환해주는 것 이다
+- @Configuration : 스프링 설정 정보에서 사용
+  - 스프링 빈이 싱글톤을 유지하도록 추가처리를 한다
+
 
 
 
