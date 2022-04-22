@@ -278,10 +278,22 @@ MemberRepository repo2 = ac.getBean("memberRepository",MemberRepository.class);
    * 지정하지 않으면 해당 클래스의 위치가 시작위치
    */
   basePackage = "hello.core" 
+  
+  /**
+   * 직접만든 @MyIncludeComponent를 스프링 빈 등록 대상으로 지정한다
+   */
+  includeFilters = @Filter(type=FilterType.ANNOTATION, classes=MyIncludeComponent.class)
+  
+  /**
+   * 직접만든 @MyExcludeComponent를 스프링 빈 등록 대상에서 제외한다
+   */
+  excludeFilters = @Filter(type=FilterType.ANNOTATION, classes=MyExcludeComponent.class)
 )
 ```
 - @SpringBootApplication 안에 @ComponentScan 어노테이션이 존재한다
   - 때문에 @ComponentScan을 사용할 경우에는 최상위 패키지의 위치에 두는것이 관례이다 (스프링부트에서도 이 방법을 기본으로 제공한다)
+- ✔스프링 부트에서 컴포넌트 스캔을 기본적으로 제공하므로 개인적으로 옵션을 변경하여 사용하기 보단  
+최대한 기본 설정에 맞추어 사용하는것을 권장한다
 
 
 
