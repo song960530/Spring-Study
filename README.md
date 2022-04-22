@@ -322,5 +322,93 @@ MemberRepository repo2 = ac.getBean("memberRepository",MemberRepository.class);
 - 만약 이렇게 오버라이딩 되면 이후에 찾을 수 없는 버그가 생겨버린다  
 이러한 상황때문에 스프링 부트에서는 충돌이 나면 오류가 발생하도록 기본값을 바꾸었다
 
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+## 의존관계 주입 방법
+- 생성자 주입
+- 수정자 주입(setter주입)
+- 필드 주입
+- 일반 메서드 주입 (이건 사용하지 않아 설명을 추가하지 않겠다)
+
+
+## 생성자 주입(✨권장✨)
+- 생성자를 통하여 의존 관계를 주입받는 방법
+- 생성자 호출 시점에 딱 1번만 호출되는것이 보장된다
+- 불변, 필수 의존관게에 사용
+- 순환참조문제를 실행시점에 잡아낼 
+```java
+/**
+ * 인강에서 나왔던 내용
+ */
+private final MemberRepository memberRepository;
+
+@Autowired // 생성자가 1개일 경우 @Autiwired 는 생략 가능
+public MemberServiceImpl(MemberRepository memberRepository) {
+  this.memberRepository = memberRepository;
+}
+
+///////////////////////////
+
+/**
+ * 요즘 추천하는 방법
+ * @Requiredargsconstructor 가 final이 붙은 필드를 대상으로 생성자를 만들어준다
+ * 때문에 별도의 생성자 메서드 없이 주입을 받을 수 있다
+ */
+ 
+ @Service
+ @Requiredargsconstructor
+ public class MemberServiceImpl implements MemverService {
+  private final MemberRepository memberRepository;
+  
+  .
+  .
+  .
+ }
+```
+
+
+
+## Setter 주입
+- setter 수정자 메서드를 사용하여 의존관계를 주입하는 방법
+- 선택, 변경 가능성이 있는 의존고나계에 사용
+- 자바 빈 프로퍼티 규약의 수정자 메서드를 사용하는 방법이다
+```java
+private MemberRepository memberRepository;
+
+@Autowired 
+public void setMemberRepository(MemberRepository memberRepository) {
+  this.memberRepository = memberRepository;
+}
+```
+
+
+
+## 필드 주입 (비추)
+- 필드에 바로 주입하는 방법
+- 코드가 간결해지는 것 이외의 장점은 없다
+  - 테스트하기가 힘들어지고, 순환참조문제를 실행시점에 잡아낼 수 없다
+- DI 프레임워크가 없으면 아무것도 할 수 없다
+```java
+@Autowired
+private MemberRepository memberRepository;
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
