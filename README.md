@@ -389,6 +389,7 @@ public void setMemberRepository(MemberRepository memberRepository) {
 - 코드가 간결해지는 것 이외의 장점은 없다
   - 테스트하기가 힘들어지고, 순환참조문제를 실행시점에 잡아낼 수 없다
 - DI 프레임워크가 없으면 아무것도 할 수 없다
+- Autowired(required=false) : 자동 주입할 대상이 없으면 수정자 메서드 자체가 호출 안됨
 ```java
 @Autowired
 private MemberRepository memberRepository;
