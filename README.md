@@ -433,6 +433,34 @@ private MemberRepository memberRepository;
 
 
 
+## 스프링 빈의 생명주기
+- ```스프링 컨테이너 생성 -> 스프링 빈 생성 -> 의존관계 주입 -> 초기화 콜백 -> 사용 -> 소멸전 콜백 -> 스프링 종료```
+
+
+
+## 스프링 빈 생명주기 콜백 지원
+- 크게 인터페이스(InitializingBean, DisposableBean), 설정 정보에 초기화 메서드, 종료 메서드 지정, @PostConstruct, @PreDestroy 애노테이션 지원 3가지 방법으로 지원한다
+- 인터페이스(InitializingBean, DisposableBean)
+  - InitializingBean 인터페이스를 상속받아 afterPropertiesSet() 메서드로 초기화를 지원한다.
+  - DisposableBean 인터페이스를 상속받아 destroy() 메서드로 소멸을 지원한다.
+  - 초기화, 소멸 인터페이스 단점
+    - 스프링 빈 전용 인터페이스에 의존하게 된다
+    - 초기화, 소멸 메서드의 이름을 변경할 수 없다
+    - 코드를 고칠 수 없는 외부 라이브러리에 적용할 수 없다
+  -  인터페이스를 사용하는 초기화, 종료 방법은 스프링 초창기에 나온 방법이다. 지금은 다음의 더 좋은 방법들이 있어서 거의 사용하지 않는다
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
