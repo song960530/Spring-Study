@@ -501,7 +501,10 @@ private MemberRepository memberRepository;
 
 
 
-
+## 싱글톤 스코프 빈에서 프로토타입 스코프 빈을 의존성 주입을 받을 경우 어떻게 해야하나
+- Provider라는 자바 표준 기술 혹은 ObjectFactory, ObjectProvider 스프링에 의존된 기술을 사용하면 된다
+- 근데 이런 경우가 너무 극히 드믈기 때문에 따로 다루진 않도록 하겠다.
+  - 새로 생성해야하는 경우 굳이 빈으로 등록하지 않고 new 생성자로 하는 방법을 선택한다
 
 
 
