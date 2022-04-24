@@ -481,10 +481,23 @@ private MemberRepository memberRepository;
 
 
 
+## @Scope("singleton")
+![싱글톤 빈](https://user-images.githubusercontent.com/52727315/164967755-57dbc441-e324-42fd-b1a1-1f224d9e922a.png)
+- 1.싱글톤 스코프의 빈을 스프링 컨테이너에 요청한다
+- 2.스프링 컨테이너에서 관리하는 스프링 빈을 반환한다
+- 3.이후 요청이 들어와도 동일한 스프링 빈 객체를 반환한다
 
 
 
 
+## @Scope("prototype")
+- 프로토타입 빈을 생성하고, 의존관계 주입, 초기화까지만 처리하고, 생성된 프로토타입 빈을 관리하지 않는다. 때문에 @PreDestroy 같은 종료 메서드가 동작하지 않는다
+![프로토타입 빈 요청](https://user-images.githubusercontent.com/52727315/164967820-dbd89bd8-74c8-4847-9f76-8fb5071294b7.png)
+- 1.프로토타입 스코프의 빈을 스프링 컨테이너에 요청한다
+- 2.스프링 컨테이너는 빈을 생성하고 필요한 의존관계 주입을 실행한다
+![프로토타입 빈 반환](https://user-images.githubusercontent.com/52727315/164967827-d15fb6d5-561b-4029-8f80-27f512c7b0ee.png)
+- 3.생성된 프로토타입 빈을 클라이언트에게 반환한다
+- 4.이후 요청이 들어오면 새로 생성 후 생성된 객체를 반환한다
 
 
 
