@@ -64,3 +64,16 @@
 - 도메인 네임 시스템(Domain Name System)
 - 전화번호부 같은 역할을 한다
 - 도메인명을 IP주소로 변경해준다(DNS서버에 등록되어 있어야 함)
+
+
+
+## URI? URL? URN?
+- URI (Uniform Resource Identifier)
+- URL (Uniform Resource Locator)
+  - scheme://[userinfo@]host[:port][/path][?query][#fragment]
+  - https://www.google.com:443/search?q=hello&hi=ko
+- URN (Uniform Resource Name)
+- 간단하게 이야기하자면 URI안에 URL과 URN이 포함되어 있고, 우리가 흔히 웹브라우져에서 사용하는 주소가 URL이다
+  - URL: foo://example.com:8080/over/there?name=ferret#nose
+  - URN: urn:example:animal:ferret:nose
+  - URN 이름만으론 실제 리소스를 찾을 수 있는 방법이 보편화되어 있지 않아 거의 사용하지 않는다
