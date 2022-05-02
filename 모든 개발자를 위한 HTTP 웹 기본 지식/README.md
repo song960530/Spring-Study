@@ -161,7 +161,34 @@
 
 
 
+## HTTP API 활용
+- HTTP API 
+  - 컬렉션
+    - POST 기반 등록
+    - 서버가 리소스 URI를 결정 EX) POST /files
+  - 스토어
+    - PUT 기반 등록
+    - 클라이언트가 리소스 URI를 결정 EX) PUT /files/star.jpg
+  - HTML FORM
+    - 순수 HTML + HTML FORM을 사용
+    - GET,POST 메서드만 지원
 
 
 
 
+## 참고하면 좋은 URI 설계 개념
+- 문서(document)
+  - 단일 개념
+  - EX) /members/100, /files/star.jpg
+- 컬렉션(Collection)
+  - 서버가 관리하는 리소스 디렉토리
+  - 서버가 리소스의 URI를 생성하고 관리
+  - EX) POST /members
+- 스토어(store)
+  - 클라이언트가 관리하는 자원 저장소
+  - 클라이언트가 리소스의 URI를 알고 관리
+  - EX) PUT /files/star.jpg
+- 컨트롤 URI
+  - 문서, 컬렉션, 스토어로 해결하기 어려운 추가 프로세스 실행 
+  - 동사를 직접 사용
+  - EX) DELETE /members/100/delete
