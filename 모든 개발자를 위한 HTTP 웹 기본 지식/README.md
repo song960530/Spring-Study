@@ -296,6 +296,17 @@
 
 
 
+## 전송방식
+- 단순 전송
+  - Content-Length
+  - Http Header의 Content-Length만큼 메시지Body에 데이터를 담아 보내는 방식
+- 압축 전송
+  - Content-Encoding
+  - 메세지 Body 데이터를 특정 압축방식으로 압축하여 요청을 보내는 방식
+- 분할 전송
+  - Http Header에 Transfer-Encoding: chunked 라는 설정을 통하여 메세지를 쪼개어 전달하는 방식
+- 범위 전송
+  - Http Header에  Content-Range: bytes 1001-2000/2000 와같이 범위를 지정하여 요청을 보내는 방식
 
 
 
