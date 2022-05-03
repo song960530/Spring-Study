@@ -255,7 +255,7 @@
 
 
 ## Http-Header🧐
-![HTTP HEADER](htps://user-images.githubusercontent.com/52727315/166402667-52720b9b-c9e1-40df-8eaa-63a5aa5b7b5e.png)
+![HTTP HEADER](https://user-images.githubusercontent.com/52727315/166403007-8e3c70a1-2182-4775-a620-a3af138d21f4.png)
 - RFC7230(최신 스펙)
 - 메세지 Body를 통해 표현 데이터를 전달하며 메세지 Body == 페이로드(payload)와 동일하다
 - 표현은 요청이나 응답에서 전달할 실제 데이터이다
