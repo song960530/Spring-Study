@@ -249,3 +249,52 @@
     -  307: 리다이렉트시 요청 메서드가 GET으로 변경
 - 특수 리다이렉션
   - 결과 대신 캐시를 사용
+
+
+
+
+
+## Http-Header🧐
+![HTTP HEADER](htps://user-images.githubusercontent.com/52727315/166402667-52720b9b-c9e1-40df-8eaa-63a5aa5b7b5e.png)
+- RFC7230(최신 스펙)
+- 메세지 Body를 통해 표현 데이터를 전달하며 메세지 Body == 페이로드(payload)와 동일하다
+- 표현은 요청이나 응답에서 전달할 실제 데이터이다
+  - 표현(Representation) = 표현 메타데이터 + 표현 데이터.
+  - 이전 스펙에선 엔티티(Entity)라 불렸었음
+- 표현 헤더는 표현 데이터를 해석할 수 있는 정보를 제공한다
+
+
+
+## 표현의 구성
+- Content-Type: 표현 데이터의 형식
+  - 미디어타입, 문자 인코딩
+  - EX) text/html; charset=utf-8, application/json, image/png...
+- Content-Encoding: 표현 데이터의 압축 방식
+  - 표현 데이터를 압축하기 위하여 사용
+  - 데이터를 읽는 쪽에서 인코딩 헤더의 정보로 압축 해제
+  - EX) gzip, deflate, identity
+- Content-Language: 표현 데이터의 자연 언어
+  - 표현 데이터의 자연 언어를 표현
+  - EX) ko, en, en-US
+- Content-Length: 표현 데이터의 길이
+  - 바이트 단위
+  - Transfer-Encoding(전송코딩)을 사용하면 Content-Lencth를 사용하면 안됨
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
