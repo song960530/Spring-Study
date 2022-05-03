@@ -282,8 +282,17 @@
 
 
 
-
-
+## 협상(콘텐츠 네고시에이션)
+- 클라이언크가 서버에 요청할 때 응답줄땐 이렇게 주세요! 주라는 개념
+- Accept: 클라이언트가 선호하는 미디어 타입 전달
+  - Accept: text/*, text/plain, text/plain;format=flowed, */*
+  - 위와 같이 q값없이 있을경우 구체적인것이 우선순위를 갖는다
+- Accept-Charset: 클라이언트가 선호하는 문자 인코딩
+- Accept-Encoding: 클라이언트가 선호하는 압축 인코딩
+- Accept-Language: 클라이언트가 선호하는 자연 언어
+  - Accept-Language: ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7
+  - 위 와 같이 우선순위를 줄 수 있고 숫자가 q(Quality Values) 값이 생략되었으면 1이다
+  - 0~1 사이로 표현하며 숫자가 높을수록 우선순위를 갖는다
 
 
 
