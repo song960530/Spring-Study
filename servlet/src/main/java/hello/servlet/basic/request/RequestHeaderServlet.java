@@ -46,6 +46,7 @@ public class RequestHeaderServlet extends HttpServlet {
         request.getLocales().asIterator()
                 .forEachRemaining(locale -> System.out.println("locale = " + locale));
         System.out.println("request.getLocale() = " + request.getLocale());
+
         System.out.println();
         System.out.println("[cookie 편의 조회]");
         if (request.getCookies() != null) {
